@@ -4,7 +4,24 @@ int weightedSum(int num);
 
 int main()
 {
-	printf("%d\n", weightedSum(4231));
+	int len;
+	scanf("%d", &len);
+	int sums[len];
+
+	int num, i;
+	for (i = 0; i < len; i++)
+	{
+		scanf("%d", &num);
+		sums[i] = weightedSum(num);
+	}
+
+	for (i = 0; i < len; i++)
+	{
+		printf("%d ", sums[i]);
+	}
+
+	printf("\n");
+
 	return 0;
 }
 
@@ -12,13 +29,10 @@ int weightedSum(int num)
 {
 	int sum = 0;
 	int lastSum = 0;
-	int temp = 0;
 	while (num > 0)
 	{
-		temp = temp + num % 10;
-		sum = lastSum + temp;
-		printf("%d\n", sum);
-		lastSum = temp;
+		lastSum = lastSum + num % 10;
+		sum = lastSum + sum;
 		num = num / 10;
 	}
 	return sum;
